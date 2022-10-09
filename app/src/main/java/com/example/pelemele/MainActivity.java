@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Paint;
+import android.os.Build;
 import android.provider.MediaStore;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,9 +21,19 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
-
+    static final int MINUTES_PER_HOUR = 60;
+    static final int SECONDS_PER_MINUTE = 60;
+    static final int SECONDS_PER_HOUR = SECONDS_PER_MINUTE * MINUTES_PER_HOUR;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -134,27 +146,61 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public boolean onOptionsItemSelected (MenuItem item) {
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        service.execute(new Runnable() {
+            @Override
+            public void run() {
+            }
+        });
+
         if (item.getItemId() == R.id.items_leave) {
             Toast.makeText(MainActivity.this, "Etes vous sûr de vouloir Quitter l'Application ? (Cliquez à nouveau sur le bouton pour confirmé", Toast.LENGTH_SHORT).show();
             item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
                     Toast.makeText(MainActivity.this, "Vous avez Quitter l'Application", Toast.LENGTH_SHORT).show();
-                        finish();
+                    finish();
                     return false;
                 }
             });
         }
+
         if (item.getItemId() == R.id.item_chrono) {
-            Toast.makeText(MainActivity.this, "Vous avez lancé votre chronomètre", Toast.LENGTH_SHORT).show();
-
-        }
-        if (item.getItemId() == R.id.item_fin) {
-            Toast.makeText(MainActivity.this, "Vous avez mis pose à votre chronomètre", Toast.LENGTH_SHORT).show();
-
+            LocalDateTime d1 = LocalDateTime.now();
+            String t1 = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH-mm-ss");
+            Toast.makeText(MainActivity.this, "Début du chronomètre : " + t1, Toast.LENGTH_SHORT).show();
+            terminerChrono(d1,item);
         }
         return true;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void terminerChrono(LocalDateTime d1, MenuItem item){
+        if (item.getItemId() == R.id.item_fin) {
+
+            LocalDateTime d2 = LocalDateTime.now();
+            long time[] = getTime(d1, d2);
+            Toast.makeText(MainActivity.this, "Le chronomètre à durée : " + time[0] + " heures " + time[1] + " minutes " + time[2] + " secondes ", Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private long[] getTime(LocalDateTime dob, LocalDateTime now) {
+        LocalDateTime today = LocalDateTime.of(now.getYear(),
+                now.getMonthValue(), now.getDayOfMonth(), dob.getHour(), dob.getMinute(), dob.getSecond());
+        Duration duration = Duration.between(today, now);
+
+        long seconds = duration.getSeconds();
+
+        long hours = seconds / SECONDS_PER_HOUR;
+        long minutes = ((seconds % SECONDS_PER_HOUR) / SECONDS_PER_MINUTE);
+        long secs = (seconds % SECONDS_PER_MINUTE);
+
+        return new long[]{hours, minutes, secs};
     }
 
 

@@ -53,7 +53,7 @@ public class LongActivity extends AppCompatActivity {
             @Override
             public void run() {
                 b.setVisibility(View.INVISIBLE);
-                Toast.makeText(LongActivity.this, "Fin du message", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LongActivity.this, "Fin de l'activité", Toast.LENGTH_SHORT).show();
             }
         });
 

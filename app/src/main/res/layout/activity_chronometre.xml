@@ -13,10 +13,19 @@
         tools:layout_editor_absoluteX="66dp"
         tools:layout_editor_absoluteY="-16dp">
 
+        <TextView
+            android:id="@+id/txt_chrono"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:text="Lancer le chronomètre"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="24sp" />
+
         <Button
             android:id="@+id/btn_start"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="191dp"
             android:backgroundTintMode="add"
             android:contentDescription="@string/app_name"
             android:foreground="@drawable/unknown" />
@@ -24,6 +33,15 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="73dp" />
+
+        <TextView
+            android:id="@+id/txt_chrono2"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:text="Finir le chronomètre"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/btn_stop"

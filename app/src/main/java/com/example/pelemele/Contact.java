@@ -7,12 +7,15 @@ import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Contact extends AppCompatActivity {
 
@@ -22,25 +25,41 @@ public class Contact extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
-        recupContact();
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        service.execute(new Runnable() {
+            @Override
+            public void run() {
+                recupContact();
+            }
+        });
+
     }
+
+    //récuperation des contacts
+
     public void recupContact(){
 
-            ContentResolver contentResolver = this.getContentResolver();
-            Cursor cursor = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                    null, null, null, null);
-            if(cursor==null){
-                    Log.d("erreur","erreur");
+        ContentResolver contentResolver = this.getContentResolver();
+        Cursor cursor = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,new String[]{ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME_ALTERNATIVE,ContactsContract.CommonDataKinds.Phone.NUMBER},null,null,null);
+        if(cursor==null){
+                Log.d("erreur","erreur");
             }else{
-                TextView txt = (TextView) findViewById(R.id.txtContact);
+                EditText txt = (EditText) findViewById(R.id.edit_contact);
                 while (cursor.moveToNext()){
-                    @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME_ALTERNATIVE));
-                    @SuppressLint("Range") String phoneNumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                    txt.setText(txt.getText().toString() + "\n\r"+name + " " + phoneNumber);
-
+                  @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME_ALTERNATIVE));
+                  @SuppressLint("Range") String phone = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                  txt.setText(txt.getText().toString() + "\n\r" + name + " : " + phone);
                 }
-                cursor.close();
-            }
+                if(cursor.isClosed()==false){
+                    cursor.close();
+                }
 
+            }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        });
     }
 }
