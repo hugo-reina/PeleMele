@@ -4,25 +4,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:textAlignment="center"
     tools:context=".MeteoActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#00FFFFFF"
-        android:orientation="vertical">
+        android:background="@drawable/raw"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <Button
             android:id="@+id/btn_LL"
             android:layout_width="412dp"
-            android:layout_height="120dp"
-            android:background="#3F51B5"
+            android:layout_height="wrap_content"
+            android:background="#9A6591DC"
             android:text="Longitude Lattitude" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="82dp" />
+
+        <TextView
+            android:id="@+id/txt_ville"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/txt_meteo"
             android:layout_width="match_parent"
-            android:layout_height="63dp" />
+            android:layout_height="85dp"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txt_lat"
+            android:layout_width="match_parent"
+            android:layout_height="33dp"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/edit_lat"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/txt_long"
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/edit_lon"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/btn_valider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Valider" />
+
+        <TextView
+            android:id="@+id/txt_rep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/txt_rep1"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:textAlignment="center" />
 
     </LinearLayout>
 

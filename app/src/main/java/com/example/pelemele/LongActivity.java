@@ -44,8 +44,9 @@ public class LongActivity extends AppCompatActivity {
     }
     private void affichage(ProgressBar b){
         int i = 0;
+        int c = 0;
         while (i < 1000000000) {
-            int c = 1 + 1;
+            c = c + 1;
             i++;
         }
         runOnUiThread(new Runnable() {
