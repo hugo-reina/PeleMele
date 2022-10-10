@@ -1,13 +1,17 @@
 package com.example.pelemele;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.graphics.Canvas;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -17,13 +21,18 @@ import android.widget.Toast;
 
 import java.util.List;
 
-public class Capteur extends AppCompatActivity {
+public class Capteur extends AppCompatActivity{
 
     // The sensor manager
     private SensorManager sensorManager;
     private SensorEventListener sensorEventListener;
     private Switch s;
     private Sensor sensor;
+    private Sensor sensorMag;
+    private Class c;
+    private Canvas canvas;
+    private Context context;
+    private AttributeSet at;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,16 +40,37 @@ public class Capteur extends AppCompatActivity {
         setContentView(R.layout.activity_capteur);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
 
+
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         s = (Switch) findViewById(R.id.switch1);
+
+        myView v = new myView(context, at);
+
         sensorEventListener = new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent event) {
                 float x = event.values[0];
                 float y = event.values[1];
                 float z = event.values[2];
-                Log.i("Sensor x ", "" + x);
+                Log.i("Sensor Accelerometer x ", "" + x);
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+            }
+        };
+
+        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+        sensorEventListener = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                float x = event.values[0];
+                float y = event.values[1];
+                float z = event.values[2];
+                Log.i("Sensor TYPE_MAGNETIC_FIELD x ", "" + x);
+
             }
             @Override
             public void onAccuracyChanged(Sensor sensor, int accuracy) {
@@ -86,6 +116,7 @@ public class Capteur extends AppCompatActivity {
 
     private void register(){
         sensorManager.registerListener(sensorEventListener, sensor,10000000);
+        sensorManager.registerListener(sensorEventListener, sensorMag,10000000);
     }
 
 }

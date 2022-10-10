@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        tools:layout_editor_absoluteX="111dp"
+        tools:layout_editor_absoluteY="201dp">
 
         <Switch
             android:id="@+id/switch1"
@@ -22,7 +22,7 @@
 
         <com.example.pelemele.myView
             android:layout_width="match_parent"
-            android:layout_height="245dp"
+            android:layout_height="239dp"
             android:contentDescription="@string/app_name" />
     </LinearLayout>
 

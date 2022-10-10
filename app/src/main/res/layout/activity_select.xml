@@ -20,15 +20,25 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/imageView"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="374dp"
-            android:adjustViewBounds="true"
-            android:contentDescription="img"
-            android:visibility="visible"
-            app:srcCompat="@drawable/raw"
-            tools:visibility="visible" />
+            android:layout_height="match_parent">
+
+            <SurfaceView
+                android:id="@+id/surfaceView"
+                android:layout_width="match_parent"
+                android:layout_height="373dp" />
+
+            <ImageView
+                android:id="@+id/img_select"
+                android:layout_width="match_parent"
+                android:layout_height="374dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="img"
+                app:srcCompat="@drawable/raw"
+                tools:ignore="ImageContrastCheck" />
+        </FrameLayout>
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

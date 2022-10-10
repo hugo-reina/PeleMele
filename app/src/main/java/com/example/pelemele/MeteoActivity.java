@@ -43,10 +43,10 @@ import java.util.concurrent.Executors;
 
 public class MeteoActivity extends AppCompatActivity implements LocationListener {
     LocationManager locationManager;
-    private final String url = "https://api.openWeathermap.org/data/2.5/weather?lat=48.692054&lon=6.184417&appid=989e7d21ce359aaf25ac1720bd42241c";
-    private final String urlLL = "https://api.openWeathermap.org/data/2.5/weather?";
+    private  String url = "https://api.openWeathermap.org/data/2.5/weather?lat=48.692054&lon=6.184417&appid=989e7d21ce359aaf25ac1720bd42241c";
+    private  String urlLL = "https://api.openWeathermap.org/data/2.5/weather?";
         //lat=48.692054&lon=6.184417&
-    private final String appid = "appid=989e7d21ce359aaf25ac1720bd42241c";
+    private  String appid = "appid=989e7d21ce359aaf25ac1720bd42241c";
 
     //private final String appid = "989e7d21ce359aaf25ac1720bd42241c";
 

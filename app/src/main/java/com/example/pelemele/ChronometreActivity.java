@@ -27,9 +27,9 @@ import java.util.Formatter;
 import java.util.Locale;
 
 public class ChronometreActivity extends AppCompatActivity {
-    static final int MINUTES_PER_HOUR = 60;
-    static final int SECONDS_PER_MINUTE = 60;
-    static final int SECONDS_PER_HOUR = SECONDS_PER_MINUTE * MINUTES_PER_HOUR;
+    private int MINUTES_PER_HOUR = 60;
+    private int SECONDS_PER_MINUTE = 60;
+    private int SECONDS_PER_HOUR = SECONDS_PER_MINUTE * MINUTES_PER_HOUR;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

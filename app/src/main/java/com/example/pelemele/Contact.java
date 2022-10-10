@@ -25,6 +25,8 @@ public class Contact extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
+
+        //Thread
         ExecutorService service = Executors.newSingleThreadExecutor();
         service.execute(new Runnable() {
             @Override
@@ -35,12 +37,13 @@ public class Contact extends AppCompatActivity {
 
     }
 
-    //récuperation des contacts
 
+    //récuperation des contacts
     public void recupContact(){
 
         ContentResolver contentResolver = this.getContentResolver();
         Cursor cursor = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,new String[]{ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME_ALTERNATIVE,ContactsContract.CommonDataKinds.Phone.NUMBER},null,null,null);
+        //récupère le nom et le numéro de telephone
         if(cursor==null){
                 Log.d("erreur","erreur");
             }else{
