@@ -19,6 +19,11 @@
             android:layout_width="208dp"
             android:layout_height="54dp"
             android:text="Sensor on" />
+
+        <com.example.pelemele.myView
+            android:layout_width="match_parent"
+            android:layout_height="245dp"
+            android:contentDescription="@string/app_name" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
