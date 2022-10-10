@@ -4,12 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#959393"
     tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <TextView
             android:id="@+id/txt_bjr"
@@ -27,19 +30,25 @@
             android:backgroundTint="#FF9800"
             android:text="BONJOUR" />
 
-        <Button
-            android:id="@+id/btn_photo"
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:backgroundTint="#3F51B5"
-            android:text="PHOTO" />
+            android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:backgroundTint="#2196F3"
-            android:text="Voir Image" />
+            <Button
+                android:id="@+id/btn_photo"
+                android:layout_width="207dp"
+                android:layout_height="60dp"
+                android:backgroundTint="#3F51B5"
+                android:text="PHOTO" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:backgroundTint="#2196F3"
+                android:enabled="false"
+                android:text="Voir Image" />
+        </TableRow>
 
         <Button
             android:id="@+id/btn_chrono"
@@ -52,27 +61,39 @@
             android:id="@+id/btn_long"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="#9C27B0"
+            android:background="#D772E8"
             android:text="Long Activity" />
 
         <Button
             android:id="@+id/btn_meteo"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:backgroundTint="#CDDC39"
+            android:backgroundTint="#39AEDC"
             android:text="Metéo" />
 
-        <Button
-            android:id="@+id/btn_contact"
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Contact" />
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btn_contact"
+                android:layout_width="205dp"
+                android:layout_height="wrap_content"
+                android:text="Contact" />
+
+            <Button
+                android:id="@+id/btn_capteur"
+                android:layout_width="201dp"
+                android:layout_height="wrap_content"
+                android:text="Capteur" />
+        </TableRow>
 
         <Button
-            android:id="@+id/btn_capteur"
+            android:id="@+id/btn_Select"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Capteur" />
+            android:background="#D39F9F"
+            android:text="Select image" />
 
     </LinearLayout>
 

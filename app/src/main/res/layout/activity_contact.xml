@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#959393"
     tools:context=".Contact">
 
     <LinearLayout
@@ -15,16 +16,16 @@
             android:id="@+id/txt_Contact"
             android:layout_width="match_parent"
             android:layout_height="43dp"
+            android:background="@color/purple_200"
             android:text="Mes contacts"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textSize="24sp"
-            android:background="@color/purple_200"/>
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/edit_contact"
             android:layout_width="match_parent"
-            android:layout_height="505dp"
+            android:layout_height="546dp"
             android:ems="10"
             android:gravity="start|top"
             android:hint="@string/app_name"

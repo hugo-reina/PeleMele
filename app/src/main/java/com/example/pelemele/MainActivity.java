@@ -64,6 +64,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button s = (Button) findViewById(R.id.btn_Select);
+        s.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SelectActivity.class);
+                startActivity(intent);
+            }
+        });
+
         Button g = (Button) findViewById(R.id.btn_capteur);
         g.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(intent, 123);
+            d.setEnabled(true);
         }
     });
 

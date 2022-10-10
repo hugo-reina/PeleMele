@@ -41,12 +41,10 @@ public class Capteur extends AppCompatActivity {
         };
 
     private void listSensor() {
-        // Trouver tous les capteurs de l'appareil :
-        List<Sensor> sensors = sensorManager.getSensorList(Sensor.TYPE_ALL);
+        Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         // La chaîne descriptive de chaque capteur
         StringBuffer sensorDesc = new StringBuffer();
         // pour chaque capteur trouvé, construire sa chaîne descriptive
-        for (Sensor sensor : sensors) {
             sensorDesc.append("New sensor detected : \r\n");
             sensorDesc.append("\tName: " + sensor.getName() + "\r\n");
             sensorDesc.append("\tType: " + getType(sensor.getType()) + "\r\n");
@@ -56,7 +54,7 @@ public class Capteur extends AppCompatActivity {
             sensorDesc.append("Vendor: " + sensor.getVendor() + "\r\n");
             sensorDesc.append("Maximum range of the sensor in the sensor's unit." + sensor.getMaximumRange() + "\r\n");
             sensorDesc.append("Minimum delay allowed between two events in microsecond" + " or zero if this sensor only returns a value when the data it's measuring changes" + sensor.getMinDelay() + "\r\n");
-        }
+
         // Faire quelque chose de cette liste
         Toast.makeText(this, sensorDesc.toString(), Toast.LENGTH_LONG).show();
 

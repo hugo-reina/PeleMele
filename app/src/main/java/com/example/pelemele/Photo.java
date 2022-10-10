@@ -19,14 +19,18 @@ public class Photo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
         ImageView b = (ImageView) findViewById(R.id.img_photo);
+        Button btn = (Button) findViewById(R.id.button);
         FileInputStream fis = null;
         try {
             fis = openFileInput("image.data");
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         Bitmap bm = BitmapFactory.decodeStream(fis);
         b.setImageBitmap(bm);
+
+
     }
 
 }

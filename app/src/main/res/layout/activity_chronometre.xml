@@ -4,52 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#959393"
     tools:context=".ChronometreActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="66dp"
-        tools:layout_editor_absoluteY="-16dp">
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <TextView
             android:id="@+id/txt_chrono"
             android:layout_width="match_parent"
-            android:layout_height="57dp"
-            android:text="Lancer le chronomètre"
+            android:layout_height="76dp"
+            android:text="Chronomètre"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="24sp" />
 
-        <Button
-            android:id="@+id/btn_start"
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="191dp"
-            android:backgroundTintMode="add"
-            android:contentDescription="@string/app_name"
-            android:foreground="@drawable/unknown" />
+            android:layout_height="168dp">
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="73dp" />
+            <Button
+                android:id="@+id/btn_start"
+                android:layout_width="198dp"
+                android:layout_height="160dp"
+                android:background="#959393"
+                android:backgroundTintMode="add"
+                android:contentDescription="@string/app_name"
+                android:foreground="@android:drawable/ic_media_play" />
 
-        <TextView
-            android:id="@+id/txt_chrono2"
-            android:layout_width="match_parent"
-            android:layout_height="57dp"
-            android:text="Finir le chronomètre"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textSize="24sp" />
+            <Button
+                android:id="@+id/btn_stop"
+                android:layout_width="207dp"
+                android:layout_height="149dp"
+                android:background="#959393"
+                android:contentDescription="@string/app_name"
+                android:foreground="@android:drawable/ic_media_pause" />
 
-        <Button
-            android:id="@+id/btn_stop"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:background="@color/white"
-            android:contentDescription="@string/app_name"
-            android:foreground="@drawable/images" />
+        </TableRow>
 
     </LinearLayout>
 
