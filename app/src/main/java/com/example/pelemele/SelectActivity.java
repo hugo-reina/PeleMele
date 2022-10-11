@@ -16,7 +16,6 @@ public class SelectActivity extends AppCompatActivity {
     private int nb;
     private float x;
     private float y;
-    private float [] rectangle;
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -30,8 +29,8 @@ public class SelectActivity extends AppCompatActivity {
         SurfaceView surf = (SurfaceView)findViewById(R.id.surfaceView);
         surf.setZOrderOnTop(true);    // necessary
         SurfaceHolder sfhTrackHolder = surf.getHolder();
-        sfhTrackHolder.setFormat(PixelFormat.TRANSPARENT);
-        surf.setZOrderOnTop(true);
+        sfhTrackHolder.setFormat(PixelFormat.TRANSPARENT); // met le surfaceHolder transparent
+        surf.setZOrderOnTop(true); //place le surfaceHolder en premier
 
         i.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -42,14 +41,10 @@ public class SelectActivity extends AppCompatActivity {
                     x = x = event.getX();
                     y = event.getY();
                     Log.i("X et Y du 1er click ", x + " " + y);
-                    //rectangle[0] = x; // je construit mon rectangle
-                    //rectangle[1] = y;
-                }else if (nb == 1) {
+                }else if (nb == 1) { //récupère le x et le y des 2 premiers clicks
                     x = event.getX();
                     y = event.getY();
                     Log.i("X et Y  du 2ème click", x + " " + y);
-                    //rectangle[2] = x;
-                    //rectangle[3] = x;
                     nb=0;
                 }
 

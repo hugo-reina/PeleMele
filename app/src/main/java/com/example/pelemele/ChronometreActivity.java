@@ -43,20 +43,20 @@ public class ChronometreActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
-                start.setEnabled(false);
-                stop.setEnabled(true);
-                LocalDateTime d1 = LocalDateTime.now();
+                start.setEnabled(false); //desactive le btn start
+                stop.setEnabled(true); //active le btn stop
+                LocalDateTime d1 = LocalDateTime.now(); //récupère l'heure now();
                 String t1 = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH-mm-ss");
                     Toast.makeText(ChronometreActivity.this, "Début du chronomètre : " + t1, Toast.LENGTH_SHORT).show();
                     stop.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            start.setEnabled(true);
-                            stop.setEnabled(false);
+                            start.setEnabled(true);//active le btn start
+                            stop.setEnabled(false);//desactive le btn stop
                             //String t2 = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
-                            LocalDateTime d2 = LocalDateTime.now();
-                            long time[] = getTime(d1, d2);
+                            LocalDateTime d2 = LocalDateTime.now(); //récupère l'heure now
+                            long time[] = getTime(d1, d2); //fait la différence entre l'heure now() précédente et l'herue now()
                                 Toast.makeText(ChronometreActivity.this, "Le chronomètre à durée : " + time[0] + " heures " + time[1] + " minutes " + time[2] + " secondes " , Toast.LENGTH_SHORT).show();
 
 

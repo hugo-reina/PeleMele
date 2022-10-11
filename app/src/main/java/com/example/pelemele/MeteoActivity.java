@@ -56,8 +56,7 @@ public class MeteoActivity extends AppCompatActivity implements LocationListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meteo);
 
-        Button b = (Button) findViewById(R.id.btn_LL);
-
+        Button b = (Button) findViewById(R.id.btn_LL); //récupère le btn_LL
         if (ContextCompat.checkSelfPermission(MeteoActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(MeteoActivity.this, new String[]{
                     Manifest.permission.ACCESS_FINE_LOCATION
@@ -117,7 +116,7 @@ public class MeteoActivity extends AppCompatActivity implements LocationListener
     @SuppressLint("SetTextI18n")
     private void meteoLL(EditText txtlat, EditText txtlon, TextView rep, TextView rep1) throws IOException, JSONException {
 
-
+        //accède au lien en fonction de la longitude et lattitude inserer dans les edits
         String lat = txtlat.getText().toString().trim();
         String lon = txtlon.getText().toString().trim();
 
@@ -129,10 +128,10 @@ public class MeteoActivity extends AppCompatActivity implements LocationListener
             }else{
                 double lati = Double.parseDouble(lat);
                 double  longi = Double.parseDouble(lon);
-                String Vurl = urlLL+"lat="+lati+"&lon="+longi+"&"+appid;
+                String Vurl = urlLL+"lat="+lati+"&lon="+longi+"&"+appid; //construit le lien
                 InputStream in = new java.net.URL(Vurl).openStream();
-                JSONObject res = readStream(in);
-                String a = res.getString("main");
+                JSONObject res = readStream(in); //on accède au lien
+                String a = res.getString("main"); //on récupère les valeurs souhaitées
                 String b = getNbr(a);
                 String [] c = b.split("\\s+");
                 int d = Integer.parseInt(c[0]);

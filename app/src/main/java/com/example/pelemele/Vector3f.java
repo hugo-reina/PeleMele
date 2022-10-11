@@ -1,6 +1,7 @@
 package com.example.pelemele;
 
 public class Vector3f {
+    //class vecteur avec x y et z
     public float x;
     public float y;
     public float z;

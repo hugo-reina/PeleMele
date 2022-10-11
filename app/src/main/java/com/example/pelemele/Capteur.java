@@ -72,14 +72,14 @@ public class Capteur extends AppCompatActivity{
             public void onSensorChanged(SensorEvent event) {
                 if(sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null){
                     float x = event.values[0];
-                    vA = new Vector3f(event.values);
+                    vA = new Vector3f(event.values); //initialise les varibles du vecteur à les variables event.value
                     Log.i("Sensor TYPE_ACCELEROMETER x ", "" + x);
-                    Changement(vA);
+                    Changement(vA); //actualise le vecteur
                 }else if(sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD) != null){
                     float x = event.values[0];
-                    vM = new Vector3f(event.values);
+                    vM = new Vector3f(event.values); //initialise les varibles du vecteur à les variables event.value
                     Log.i("Sensor TYPE_MAGNETIC_FIELD x ", "" + x);
-                    Changement(vM);
+                    Changement(vM); //actualise le vecteur
                 }
 
             }
@@ -110,7 +110,7 @@ public class Capteur extends AppCompatActivity{
     private void Changement(Vector3f v) {
         myView m = findViewById(R.id.m_view);
         m.setV(v);
-        m.invalidate();
+        m.invalidate(); //actualise le vecteur
     }
 
     ;
@@ -118,12 +118,12 @@ public class Capteur extends AppCompatActivity{
     @Override
     protected void onPause() {
         super.onPause();
-        sensorManager.unregisterListener(sensorEventListener);
+        sensorManager.unregisterListener(sensorEventListener); //arrete les capteur onPause
     }
 
     @Override
     protected void onResume() {
-        super.onResume();
+        super.onResume(); //réactive les capteurs si le btn n'est pas coché
         Switch s = (Switch) findViewById(R.id.switch1);
         if (s.isChecked()){
             s.setText("Sensor off");
