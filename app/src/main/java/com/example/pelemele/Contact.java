@@ -27,18 +27,19 @@ public class Contact extends AppCompatActivity {
         setContentView(R.layout.activity_contact);
 
         //Thread
-        ExecutorService service = Executors.newSingleThreadExecutor();
-        service.execute(new Runnable() {
-            @Override
-            public void run() {
+        //ExecutorService service = Executors.newSingleThreadExecutor();
+        //service.execute(new Runnable() {
+        //    @Override
+        //    public void run() {
                 recupContact();
-            }
-        });
+        //    }
+        //});
 
     }
 
 
     //récuperation des contacts
+    @SuppressLint("SetTextI18n")
     public void recupContact(){
 
         ContentResolver contentResolver = this.getContentResolver();
@@ -53,16 +54,16 @@ public class Contact extends AppCompatActivity {
                   @SuppressLint("Range") String phone = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                   txt.setText(txt.getText().toString() + "\n\r" + name + " : " + phone);
                 }
-                if(cursor.isClosed()==false){
+                if(!cursor.isClosed()){
                     cursor.close();
                 }
 
             }
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
+        //runOnUiThread(new Runnable() {
+            //@Override
+          //  public void run() {
 
-            }
-        });
+            //}
+        //});
     }
 }
