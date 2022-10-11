@@ -10,12 +10,21 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.Vector;
+
 public class myView extends View{
 
     private Path path;
     private Paint paint;
-    private float x;
-    private float y;
+    private Vector3f v;
+
+    public Vector3f getV() {
+        return v;
+    }
+
+    public void setV(Vector3f v) {
+        this.v = v;
+    }
 
     public myView(Context context, @Nullable AttributeSet at) {
         super(context,at);
@@ -28,9 +37,12 @@ public class myView extends View{
 
     @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        canvas.drawPath(path,paint);
-        canvas.drawLine((float) getHeight()/2,(float)  getWidth()/2,x,y,paint);
+        if(v!=null) {
+            super.onDraw(canvas);
+            canvas.drawPath(path, paint);
+            canvas.drawLine((float) getHeight() / 2, (float) getWidth() / 2, -v.x *100, v.y*100, paint);
+        }
+
     }
 
 }

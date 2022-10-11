@@ -1,9 +1,11 @@
 package com.example.pelemele;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -33,6 +35,9 @@ public class Capteur extends AppCompatActivity{
     private Canvas canvas;
     private Context context;
     private AttributeSet at;
+    private Paint paint;
+    private Vector3f vA;
+    private Vector3f vM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,39 +48,46 @@ public class Capteur extends AppCompatActivity{
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sensorMag = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
         s = (Switch) findViewById(R.id.switch1);
 
-        myView v = new myView(context, at);
+        //myView v = new myView(context, at);
 
+//        sensorEventListener = new SensorEventListener() {
+//            @Override
+//            public void onSensorChanged(SensorEvent event) {
+//                float x = event.values[0];
+//                float y = event.values[1];
+//                Log.i("Sensor Accelerometer x ", "" + x);
+//
+//            }
+//
+//            @Override
+//            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+//
+ //           }
+ //       };
         sensorEventListener = new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent event) {
-                float x = event.values[0];
-                float y = event.values[1];
-                float z = event.values[2];
-                Log.i("Sensor Accelerometer x ", "" + x);
-            }
+                if(sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null){
+                    float x = event.values[0];
+                    vA = new Vector3f(event.values);
+                    Log.i("Sensor TYPE_ACCELEROMETER x ", "" + x);
+                    Changement(vA);
+                }else if(sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD) != null){
+                    float x = event.values[0];
+                    vM = new Vector3f(event.values);
+                    Log.i("Sensor TYPE_MAGNETIC_FIELD x ", "" + x);
+                    Changement(vM);
+                }
 
+            }
             @Override
             public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
             }
-        };
 
-        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-        sensorEventListener = new SensorEventListener() {
-            @Override
-            public void onSensorChanged(SensorEvent event) {
-                float x = event.values[0];
-                float y = event.values[1];
-                float z = event.values[2];
-                Log.i("Sensor TYPE_MAGNETIC_FIELD x ", "" + x);
-
-            }
-            @Override
-            public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-            }
         };
         register();
         s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -93,7 +105,15 @@ public class Capteur extends AppCompatActivity{
 
         });
 
-        };
+        }
+
+    private void Changement(Vector3f v) {
+        myView m = findViewById(R.id.m_view);
+        m.setV(v);
+        m.invalidate();
+    }
+
+    ;
 
     @Override
     protected void onPause() {

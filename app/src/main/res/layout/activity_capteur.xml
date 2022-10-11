@@ -21,8 +21,9 @@
             android:text="Sensor on" />
 
         <com.example.pelemele.myView
+            android:id="@+id/m_view"
             android:layout_width="match_parent"
-            android:layout_height="239dp"
+            android:layout_height="435dp"
             android:contentDescription="@string/app_name" />
     </LinearLayout>
 

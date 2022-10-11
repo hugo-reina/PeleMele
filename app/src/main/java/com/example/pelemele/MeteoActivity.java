@@ -80,9 +80,7 @@ public class MeteoActivity extends AppCompatActivity implements LocationListener
             public void run() {
                 try {
                     meteo(t,p);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
+                } catch (IOException | JSONException e) {
                     e.printStackTrace();
                 }
             }
@@ -106,9 +104,7 @@ public class MeteoActivity extends AppCompatActivity implements LocationListener
                     public void run() {
                         try {
                             meteoLL(txtlat,txtlon,rep,rep1);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (JSONException e) {
+                        } catch (IOException | JSONException e) {
                             e.printStackTrace();
                         }
                     }
@@ -118,6 +114,7 @@ public class MeteoActivity extends AppCompatActivity implements LocationListener
 
     }
 
+    @SuppressLint("SetTextI18n")
     private void meteoLL(EditText txtlat, EditText txtlon, TextView rep, TextView rep1) throws IOException, JSONException {
 
 
@@ -139,7 +136,7 @@ public class MeteoActivity extends AppCompatActivity implements LocationListener
                 String b = getNbr(a);
                 String [] c = b.split("\\s+");
                 int d = Integer.parseInt(c[0]);
-                double e = d+ (Integer.parseInt(c[1])/100);
+                double e = d+ (Integer.parseInt(c[1])/100.0);
                 double temp = e - 273.15;
                 rep.setText(res.getString("name"));
                 rep1.setText(Math.round(temp*100.0)/100.0 + " Degré");
@@ -153,6 +150,7 @@ public class MeteoActivity extends AppCompatActivity implements LocationListener
         });
     }
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void meteo(TextView t, TextView p) throws IOException, JSONException {
 
@@ -163,7 +161,7 @@ public class MeteoActivity extends AppCompatActivity implements LocationListener
             String b = getNbr(a);
             String [] c = b.split("\\s+");
             int d = Integer.parseInt(c[0]);
-            double e = d+ (Integer.parseInt(c[1])/100);
+            double e = d+ (Integer.parseInt(c[1])/100.0);
             double temp = e - 273.15;
             p.setText(res.getString("name"));
             String des = res.getString("weather");
